@@ -1,0 +1,206 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  overflow: hidden;
+}
+
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bubbles::before, .bubbles::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: float 12s infinite linear;
+}
+
+.bubbles::before {
+  width: 400px;
+  height: 400px;
+  left: 10vw;
+  top: 60vh;
+  background: #fff;
+  animation-delay: 0s;
+}
+
+.bubbles::after {
+  width: 300px;
+  height: 300px;
+  right: 10vw;
+  top: 70vh;
+  background: #f0f8ff;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-60vh) scale(1.2);}
+  100% { transform: translateY(0) scale(1);}
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 60px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 18px;
+  color: #2d5fff;
+  letter-spacing: 2px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+input, button {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1eaff;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #66a6ff;
+}
+
+button {
+  background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+h2 {
+  color: #2d5fff;
+  margin-bottom: 10px;
+}
+
+#hotelList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#hotelList li {
+  background: #f0f8ff;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(102,166,255,0.08);
+  animation: fadeIn 0.7s;
+  transition: background 0.3s, color 0.3s;
+}
+
+#hotelList li:hover {
+  background: #66a6ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.hotel-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.hotel-card {
+  background: #f0f8ff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(102,166,255,0.13);
+  padding: 24px 20px;
+  width: 240px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  animation: cardFadeIn 0.7s forwards;
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hotel-card:hover {
+  background: #66a6ff;
+  color: #fff;
+  transform: translateY(-8px) scale(1.04) rotate(-1deg);
+  box-shadow: 0 8px 32px rgba(102,166,255,0.25);
+}
+
+.hotel-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+.hotel-card .location {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: inherit;
+}
+
+.hotel-card .rooms {
+  font-size: 0.95rem;
+  color: inherit;
+  margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+  .hotel-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hotel-card {
+    width: 90%;
+    min-width: 0;
+  }
+}
